@@ -14,26 +14,17 @@
  * @params flakeColor - color of snowflake, #FFFFFF by default
  * @example $.fn.snow({ maxSize: 200, newOn: 1000 });
  */
- 
- 
- 
- randflake = function() {
-    var num = Math.random() * 100 % 4;
-    if(num <= 1) {
-      return "&#10052;";
-    }
-    else if (num <= 2) {
-      return "&#10053;";
-    }
-    if(num <= 3) {
-      return "&#10054;";
-    }
+  
+  randflake = function(chars) {
+    var num = Math.random() * 100 % chars.length + 1;
+    var char = Math.floor(num);
+    return chars[char];
   };
   
 (function($){
   
 	$.fn.snow = function(options){
-			var $flake = $('<div id="flake"/>').css({'position': 'absolute', 'top': '-50px'}).html(randflake()),
+			var $flake = $('<div id="flake"/>').css({'position': 'absolute', 'top': '-50px'}).html(randflake(options.chars)),
 				documentHeight = $(document).height(),
 				documentWidth	= $(document).width(),
 				defaults		= {
@@ -75,7 +66,7 @@
 							$(this).remove();
 						}
 					)
-					.html(randflake());
+					.html(randflake(options.chars));
 			}, options.newOn);
 			
 	
