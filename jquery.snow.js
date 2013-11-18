@@ -30,16 +30,6 @@
     }
   };
   
-  randdir = function() {
-    var num = Math.random() * 100 % 2;
-    if(num <=1) {
-      return "left";
-    }
-    else {
-      return "right";
-    }
-  };
-  
 (function($){
   
 	$.fn.snow = function(options){
