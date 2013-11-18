@@ -43,12 +43,7 @@
   rotate = function(num) {
     
       $('div').each(function() {
-        if($(this).attr('dir') == "left") {
-          var degrees = Math.floor($(this).attr('rotation')) + num;
-        }
-        else {
-          var degrees = Math.floor($(this).attr('rotation')) - num;
-        }
+        var degrees = Math.floor($(this).attr('rotation')) + num;
         $(this).attr('rotation', degrees);
         $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
                    '-moz-transform' : 'rotate('+ degrees +'deg)',
@@ -61,7 +56,7 @@
 (function($){
   
 	$.fn.snow = function(options){
-			var $flake = $('<div id="flake" rotation="0" dir="' + randdir()  + '"/>').css({'position': 'absolute', 'top': '-50px'}).html(randflake()),
+			var $flake = $('<div id="flake" rotation="0"/>').css({'position': 'absolute', 'top': '-50px'}).html(randflake()),
 				documentHeight = $(document).height(),
 				documentWidth	= $(document).width(),
 				defaults		= {
@@ -70,10 +65,10 @@
 									newOn		: 500,
 									flakeColor	: "#FFFFFF"
 								},
-				options			= $.extend({}, defaults, options);
+				options					= $.extend({}, defaults, options);
 				
 			
-			var interval		= setInterval( function(){
+			var interval 				= setInterval( function(){
 				var startPositionLeft 	= Math.random() * documentWidth - 100,
 				 	startOpacity		= 0.5 + Math.random(),
 					sizeFlake			= options.minSize + Math.random() * options.maxSize,
@@ -100,11 +95,10 @@
 						durationFall,
 						'linear',
 						function() {
-							$(this).remove()
+							$(this).remove();
 						}
 					)
-					.html(randflake())
-					.attr('dir', randdir());
+					.html(randflake());
 					rotate(2);
 			}, options.newOn);
 			
