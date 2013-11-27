@@ -16,7 +16,7 @@
  */
   
   randflake = function(chars) {
-    var num = Math.random() * 100 % chars.length + 1;
+    var num = Math.random() * 100 % chars.length;
     var char = Math.floor(num);
     return chars[char];
   };
